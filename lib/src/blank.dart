@@ -77,44 +77,83 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: GridView.count(
-          primary: false,
-          padding: const EdgeInsets.all(20),
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          crossAxisCount: 2,
+         body: Column(
           children: <Widget>[
-            Container(
-              padding: const EdgeInsets.all(8),
-              color: Colors.teal[100],
-              child: const Text("He'd have you all unravel at the"),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      color: Colors.teal[100],
+                      child: const Text("He'd have you all unravel at the"),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      color: Colors.teal[200],
+                      child: Column(
+                        children: [
+                          Text('Heed not the rabble'),
+                          Image.asset('assets/images/logo.jpg'), // Reemplaza 'tu_imagen.png' con la ubicación de tu imagen en el proyecto
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              color: Colors.teal[200],
-              child: const Text('Heed not the rabble'),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 3,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      color: Colors.teal[300],
+                      child: const Text('Sound of screams but the'),
+                    ),
+                  ),
+                ),
+
+              ],
             ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              color: Colors.teal[300],
-              child: const Text('Sound of screams but the'),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              color: Colors.teal[400],
-              child: const Text('Who scream'),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              color: Colors.teal[500],
-              child: const Text('Revolution is coming...'),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              color: Colors.teal[600],
-              child: const Text('Revolution, they...'),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      color: Colors.teal[500],
+                      child: const Text('Revolution is coming...'),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      color: Colors.teal[600],
+                      child: const Text('Revolution, they...'),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
-        ));
+        ),
+      );
   }
 }

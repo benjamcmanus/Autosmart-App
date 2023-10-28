@@ -102,17 +102,23 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Inicio de Sesión'),
+        title: Text('AutoSmart'),
+        backgroundColor: Color.fromARGB(255, 3, 18, 52),
       ),
+      backgroundColor: Color.fromARGB(255, 7, 32, 53),
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: ListView(
           children: <Widget>[
+            Image.asset('assets/images/logo.jpg', height: 165, width: 165),
             // Campo Correo Electrónico
             SizedBox(height: 10.0),
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'E-mail'),
+              decoration: InputDecoration(labelText: 'E-mail',
+                                          labelStyle: TextStyle(color: const Color.fromARGB(255, 255, 255, 255)),  // Cambia el color del texto del label
+                                          hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),),
+              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
 
             // Campo Contraseña
@@ -120,7 +126,10 @@ class _LoginPageState extends State<LoginPage> {
             TextField(
               controller: _passwordController,
               obscureText: true,
-              decoration: InputDecoration(labelText: 'Contraseña'),
+              decoration: InputDecoration(labelText: 'Contraseña',
+                                          labelStyle: TextStyle(color: const Color.fromARGB(255, 255, 255, 255)),  // Cambia el color del texto del label
+                                          hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),),
+            style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
 
             // Botón Iniciar Sesión
@@ -129,6 +138,9 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: () {
                 loginUser();
               },
+              style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 33, 146, 7)), // Cambia el color del botón
+            ),
               child: Text('Iniciar Sesión'),
             ),
 
@@ -141,7 +153,9 @@ class _LoginPageState extends State<LoginPage> {
                   MaterialPageRoute(builder: (context) => RegisterApp()),
                 );
               },
-              child: Text('Registrarse'),
+              child: Text('Registrarse',style: TextStyle(color: Colors.white),)
+              ,
+              
             ),
 
             // Botón Login como invitado
