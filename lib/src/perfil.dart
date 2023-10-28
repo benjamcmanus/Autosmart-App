@@ -69,7 +69,8 @@ class ProfileScreen extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Autosmart_LoginForm()),
+                  MaterialPageRoute(
+                      builder: (context) => Autosmart_LoginForm()),
                 );
               },
             ),
@@ -77,9 +78,8 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Text('Contenido principal de la aplicación'),
+        child: Text(''),
       ),
     );
   }
 }
-
