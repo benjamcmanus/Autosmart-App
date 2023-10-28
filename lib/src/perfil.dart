@@ -78,7 +78,7 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Text(''),
+        child: Text('Contenido principal de la aplicación'),
       ),
     );
   }
