@@ -8,7 +8,7 @@ class DB {
         onCreate: (db, version) {
       return db.execute(
         """CREATE TABLE usuarios
-          (idUsuarios INTEGER PRIMARY KEY, nombre TEXT, apellido1 TEXT, apellido2 TEXT, fechaNacimiento TEXT, email TEXT, password TEXT)""",
+          (idUsuario INTEGER PRIMARY KEY, nombre TEXT, apellido1 TEXT, apellido2 TEXT, fechaNacimiento TEXT, email TEXT, password TEXT)""",
       );
     }, version: 1);
   }
@@ -46,7 +46,7 @@ class DB {
     return List.generate(
         usuariosMap.length,
         (i) => Usuarios(
-            idUsuario: usuariosMap[i]["idUsuarios"],
+            idUsuario: usuariosMap[i]["idUsuario"],
             nombre: usuariosMap[i]["nombre"],
             apellido1: usuariosMap[i]["apellido1"],
             apellido2: usuariosMap[i]["apellido2"],
