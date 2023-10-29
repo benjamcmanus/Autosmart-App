@@ -9,7 +9,7 @@ class Autosmart_App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Autosmart',
+      title: 'AutoSmart',
       home: Autosmart_LoginForm(),
     );
   }
