@@ -13,12 +13,14 @@ class DB {
     }, version: 1);
   }
 
+  //Funcion para INSERT
   static Future<Future<int>> insert(Usuarios usuarios) async {
     Database database = await _openDB();
 
     return database.insert("usuarios", usuarios.toMap());
   }
 
+  //Funcion para DELETE
   static Future<Future<int>> delete(Usuarios usuarios) async {
     Database database = await _openDB();
 
@@ -26,6 +28,7 @@ class DB {
         where: "idUsuarios = ?", whereArgs: [usuarios.idUsuario]);
   }
 
+  //Funcion para UPDATE
   static Future<Future<int>> update(Usuarios usuarios) async {
     Database database = await _openDB();
 
@@ -33,6 +36,7 @@ class DB {
         where: "idUsuarios = ?", whereArgs: [usuarios.idUsuario]);
   }
 
+  //Funcion para Listar Tabla usuarios
   static Future<List<Usuarios>> usuarios() async {
     Database database = await _openDB();
 
