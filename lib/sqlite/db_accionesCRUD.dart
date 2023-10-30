@@ -28,6 +28,7 @@ class DB_Usuarios {
         where: "idUsuarios = ?", whereArgs: [usuarios.idUsuario]);
   }
 
+  //Funcion para UPDATE
   static Future<Future<int>> update(Usuarios usuarios) async {
     Database database = await _openDB();
 
