@@ -111,12 +111,6 @@ class _RegisterPageState extends State<RegisterPage> {
           backgroundColor: Colors.green,
           textColor: Colors.white,
         );
-
-        // Navigate to the login page
-        Navigator.push(
-          context as BuildContext,
-          MaterialPageRoute(builder: (context) => Autosmart_LoginForm()),
-        );
       } else {
         // Handle registration failure (e.g., database errors)
         Fluttertoast.showToast(
@@ -136,7 +130,9 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Registro'),
+        backgroundColor: Color.fromARGB(255, 3, 18, 52),
       ),
+      backgroundColor: Color.fromARGB(255, 7, 32, 53),
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: ListView(
@@ -145,21 +141,40 @@ class _RegisterPageState extends State<RegisterPage> {
             SizedBox(height: 10.0),
             TextField(
               controller: _firstNameController,
-              decoration: InputDecoration(labelText: 'Nombre'),
+              decoration: InputDecoration(
+                labelText: 'Nombre',
+                labelStyle: TextStyle(
+                    color: const Color.fromARGB(255, 255, 255,
+                        255)), // Cambia el color del texto del label
+                hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
+              ),
+              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
-
             //Campo Apellido Paterno
             SizedBox(height: 10.0),
             TextField(
               controller: _lastNameController,
-              decoration: InputDecoration(labelText: 'Apellido Paterno'),
+              decoration: InputDecoration(
+                labelText: 'Apellido Paterno',
+                labelStyle: TextStyle(
+                    color: const Color.fromARGB(255, 255, 255,
+                        255)), // Cambia el color del texto del label
+                hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
+              ),
+              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
-
             //Campo Apellido Materno
             SizedBox(height: 10.0),
             TextField(
               controller: _middleNameController,
-              decoration: InputDecoration(labelText: 'Apellido Materno'),
+              decoration: InputDecoration(
+                labelText: 'Apellido Materno',
+                labelStyle: TextStyle(
+                    color: const Color.fromARGB(255, 255, 255,
+                        255)), // Cambia el color del texto del label
+                hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
+              ),
+              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
 
             //Campo Fecha de Nacimiento
@@ -171,8 +186,15 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: _dobController,
                   decoration: InputDecoration(
                     labelText: 'Fecha de Nacimiento',
-                    suffixIcon: Icon(Icons.calendar_today),
+                    labelStyle: TextStyle(
+                        color: const Color.fromARGB(255, 255, 255, 255)),
+                    suffixIcon: Icon(
+                      Icons.calendar_today,
+                    ),
+                    hintStyle:
+                        TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
                   ),
+                  style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
                 ),
               ),
             ),
@@ -181,7 +203,14 @@ class _RegisterPageState extends State<RegisterPage> {
             SizedBox(height: 10.0),
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'E-mail'),
+              decoration: InputDecoration(
+                labelText: 'E-Mail',
+                labelStyle: TextStyle(
+                    color: const Color.fromARGB(255, 255, 255,
+                        255)), // Cambia el color del texto del label
+                hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
+              ),
+              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
 
             //Campo Contraseña
@@ -189,7 +218,14 @@ class _RegisterPageState extends State<RegisterPage> {
             TextField(
               controller: _passwordController,
               obscureText: true,
-              decoration: InputDecoration(labelText: 'Contraseña'),
+              decoration: InputDecoration(
+                labelText: 'Contraseña',
+                labelStyle: TextStyle(
+                    color: const Color.fromARGB(255, 255, 255,
+                        255)), // Cambia el color del texto del label
+                hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
+              ),
+              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
 
             //Campo Confirmar Contraseña
@@ -197,7 +233,14 @@ class _RegisterPageState extends State<RegisterPage> {
             TextField(
               controller: _confirmPasswordController,
               obscureText: true,
-              decoration: InputDecoration(labelText: 'Confirmar Contraseña'),
+              decoration: InputDecoration(
+                labelText: 'Confirmar Contraseña',
+                labelStyle: TextStyle(
+                    color: const Color.fromARGB(255, 255, 255,
+                        255)), // Cambia el color del texto del label
+                hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
+              ),
+              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
 
             //Boton Registrarse
@@ -206,6 +249,10 @@ class _RegisterPageState extends State<RegisterPage> {
               onPressed: () {
                 registerUser();
               },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Color.fromARGB(
+                    255, 33, 146, 7)), // Cambia el color del botón
+              ),
               child: Text('Registrar'),
             ),
 
@@ -219,6 +266,10 @@ class _RegisterPageState extends State<RegisterPage> {
                       builder: (context) => Autosmart_LoginForm()),
                 );
               },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Color.fromARGB(
+                    255, 134, 2, 24)), // Cambia el color del botón
+              ),
               child: Text('Volver'),
             ),
           ],

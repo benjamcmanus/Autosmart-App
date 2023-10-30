@@ -1,8 +1,9 @@
-import 'package:Autosmart/src/blank.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart'; // Import SharedPreferences
 import 'package:Autosmart/src/register.dart';
+import 'package:Autosmart/src/blank.dart';
 import 'package:Autosmart/src/recuperarContraseña.dart';
 
 void main() {
@@ -27,6 +28,18 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
+  // Method to save the user's email to SharedPreferences
+  Future<void> saveUserEmail(String email) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('userEmail', email);
+  }
+
+  // Method to retrieve the user's email from SharedPreferences
+  Future<String?> getUserEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('userEmail');
+  }
+
   Future<void> loginUser() async {
     final email = _emailController.text;
     final password = _passwordController.text;
@@ -49,33 +62,30 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: const Color.fromARGB(255, 255, 3, 3),
         textColor: Colors.white,
       );
-
-      ;
     } else if (response.statusCode == 200) {
-        List<String> responseParts = response.body.split(',');
+      List<String> responseParts = response.body.split(',');
 
-        if (responseParts.length == 3) {
-          String successMessage = responseParts[0];
-          String userName = responseParts[1];
-          String userId = responseParts[2];
+      if (responseParts.length == 3) {
+        String successMessage = responseParts[0];
+        String userName = responseParts[1];
+        String userId = responseParts[2];
 
-          // Muestra el toast con el nombre y el ID del usuario
-          Fluttertoast.showToast(
-            msg: '$successMessage\nNombre: $userName (ID: $userId)',
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.green,
-            textColor: Colors.white,
-          );
-          
-          // Redirecciona a la página en blanco
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => BlankApp()),
-          );
-        }
-      // Correo no encontrado en la base de datos, mostrar un mensaje de error
+        // Muestra el toast con el nombre y el ID del usuario
+        Fluttertoast.showToast(
+          msg: '$successMessage\nNombre: $userName (ID: $userId)',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+        );
+
+        // Redirecciona a la página en blanco
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => BlankApp()),
+        );
+      }
     } else if (response.statusCode == 404) {
       Fluttertoast.showToast(
         msg:
@@ -99,6 +109,19 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    // Load the user's email from SharedPreferences and populate the email field
+    getUserEmail().then((savedEmail) {
+      if (savedEmail != null) {
+        setState(() {
+          _emailController.text = savedEmail;
+        });
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -111,39 +134,50 @@ class _LoginPageState extends State<LoginPage> {
         child: ListView(
           children: <Widget>[
             Image.asset('assets/images/logo.jpg', height: 165, width: 165),
+
             // Campo Correo Electrónico
             SizedBox(height: 10.0),
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'E-mail',
-                                          labelStyle: TextStyle(color: const Color.fromARGB(255, 255, 255, 255)),  // Cambia el color del texto del label
-                                          hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),),
+              decoration: InputDecoration(
+                labelText: 'E-mail',
+                labelStyle:
+                    TextStyle(color: const Color.fromARGB(255, 255, 255, 255)),
+                hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
+              ),
               style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
-
             // Campo Contraseña
             SizedBox(height: 10.0),
             TextField(
               controller: _passwordController,
               obscureText: true,
-              decoration: InputDecoration(labelText: 'Contraseña',
-                                          labelStyle: TextStyle(color: const Color.fromARGB(255, 255, 255, 255)),  // Cambia el color del texto del label
-                                          hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),),
-            style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
+              decoration: InputDecoration(
+                labelText: 'Contraseña',
+                labelStyle:
+                    TextStyle(color: const Color.fromARGB(255, 255, 255, 255)),
+                hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
+              ),
+              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
-
             // Botón Iniciar Sesión
             SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
+                final email = _emailController.text;
+                final password = _passwordController.text;
+                if (email.isNotEmpty) {
+                  // Save the user's email to SharedPreferences before logging in
+                  saveUserEmail(email);
+                }
                 loginUser();
               },
               style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 33, 146, 7)), // Cambia el color del botón
-            ),
+                backgroundColor:
+                    MaterialStateProperty.all(Color.fromARGB(255, 33, 146, 7)),
+              ),
               child: Text('Iniciar Sesión'),
             ),
-
             // Botón Registrarse
             SizedBox(height: 20.0),
             ElevatedButton(
@@ -153,9 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                   MaterialPageRoute(builder: (context) => RegisterApp()),
                 );
               },
-              child: Text('Registrarse',style: TextStyle(color: Colors.white),)
-              ,
-              
+              child: Text('Registrarse', style: TextStyle(color: Colors.white)),
             ),
 
             // Botón Login como invitado
