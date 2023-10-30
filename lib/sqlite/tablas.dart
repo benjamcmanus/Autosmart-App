@@ -1,5 +1,5 @@
 class Usuarios {
-  int idUsuario;
+  int? idUsuario;
   String nombre;
   String apellido1;
   String apellido2;

@@ -8,7 +8,7 @@ class DB_Usuarios {
         onCreate: (db, version) {
       return db.execute(
         """CREATE TABLE usuarios
-          (idUsuario INTEGER PRIMARY KEY, nombre TEXT, apellido1 TEXT, apellido2 TEXT, fechaNacimiento TEXT, email TEXT, password TEXT)""",
+          (idUsuario INTEGER AUTOINCREMENT PRIMARY KEY, nombre TEXT, apellido1 TEXT, apellido2 TEXT, fechaNacimiento TEXT, email TEXT, password TEXT)""",
       );
     }, version: 1);
   }

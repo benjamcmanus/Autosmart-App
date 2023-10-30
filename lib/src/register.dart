@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:Autosmart/src/login.dart';
+import 'package:Autosmart/sqlite/tablas.dart';
+import 'package:Autosmart/sqlite/db_accionesCRUD.dart';
+import 'package:path/path.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:Autosmart/src/login.dart';
 
 void main() {
   runApp(RegisterApp());
@@ -58,45 +61,73 @@ class _RegisterPageState extends State<RegisterPage> {
     final password = _passwordController.text;
     final confirmPassword = _confirmPasswordController.text;
 
-    final response = await http.post(
-      Uri.parse('http://10.0.2.2/autosmart/register.php'),
-      body: {
-        'firstName': firstName,
-        'lastName': lastName,
-        'middleName': middleName,
-        'dobController': dobController,
-        'email': email,
-        'password': password,
-        'confirmPassword': confirmPassword,
-      },
-    );
-    // Mensajes de Registro
+    // Verifica si las contraseñas coinciden
     if (password != confirmPassword) {
-      // Error en el registro, muestra un mensaje de error
-
+      // Error en el registro
       Fluttertoast.showToast(
-        msg: 'Error en el registro, revisa las contraseñas',
+        msg: 'Error en registro, revisa',
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.red,
         textColor: Colors.white,
       );
-    } else if (response.statusCode == 200) {
-      // Registro exitoso, muestra un mensaje al usuario
+    } else {
+      // Contraseñas coinciden, procede al registro
+      Usuarios newUser = Usuarios(
+        idUsuario: null,
+        nombre: firstName,
+        apellido1: lastName,
+        apellido2: middleName,
+        fechaNacimiento: dobController,
+        email: email,
+        password: password,
+      );
 
-      Fluttertoast.showToast(
-        msg: 'Registro exitoso',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.green,
-        textColor: Colors.white,
+      // Insertar a BD Sqlite
+      Future<int> resultSQLite = await DB_Usuarios.insert(newUser);
+
+      // Insertar a BD MySQL
+      final response = await http.post(
+        Uri.parse('http://10.0.2.2/autosmart/register.php'),
+        body: {
+          'firstName': firstName,
+          'lastName': lastName,
+          'middleName': middleName,
+          'dobController': dobController,
+          'email': email,
+          'password': password,
+          'confirmPassword': confirmPassword,
+        },
       );
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Autosmart_LoginForm()),
-      );
+
+      if (resultSQLite != -1 && response.statusCode == 200) {
+        // Registration successful in both databases
+        Fluttertoast.showToast(
+          msg: 'Registration successful',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+        );
+
+        // Navigate to the login page
+        Navigator.push(
+          context as BuildContext,
+          MaterialPageRoute(builder: (context) => Autosmart_LoginForm()),
+        );
+      } else {
+        // Handle registration failure (e.g., database errors)
+        Fluttertoast.showToast(
+          msg: 'Registration failed. Please try again.',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+        );
+      }
     }
   }
 
