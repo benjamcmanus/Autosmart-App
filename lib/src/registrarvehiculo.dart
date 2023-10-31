@@ -62,7 +62,8 @@ class _VehiculosPageState extends State<VehiculosPage> {
         'patente': patente,
       },
     );
-    if ((marca == '' && modelo == '' && year == '' && patente=='')||(marca == '' || modelo == '' || year == '' && patente=='') ) {
+    if ((marca == '' && modelo == '' && year == '' && patente == '') ||
+        (marca == '' || modelo == '' || year == '' && patente == '')) {
       Fluttertoast.showToast(
         msg: 'Complete los campos de registro',
         toastLength: Toast.LENGTH_SHORT,
@@ -71,8 +72,7 @@ class _VehiculosPageState extends State<VehiculosPage> {
         backgroundColor: const Color.fromARGB(255, 255, 3, 3),
         textColor: Colors.white,
       );
-
-    }else if (response.statusCode == 200) {
+    } else if (response.statusCode == 200) {
       Fluttertoast.showToast(
         msg: 'Registro exitoso del vehículo',
         toastLength: Toast.LENGTH_SHORT,
@@ -81,8 +81,6 @@ class _VehiculosPageState extends State<VehiculosPage> {
         backgroundColor: Colors.green,
         textColor: Colors.white,
       );
-      
-      // Puedes redirigir a otra página o realizar alguna otra acción después del registro exitoso.
     }
   }
 
@@ -91,7 +89,9 @@ class _VehiculosPageState extends State<VehiculosPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Registro de Vehículo'),
+        backgroundColor: Color.fromARGB(255, 3, 18, 52),
       ),
+      backgroundColor: Color.fromARGB(255, 7, 32, 53),
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: ListView(
@@ -100,16 +100,29 @@ class _VehiculosPageState extends State<VehiculosPage> {
             SizedBox(height: 10.0),
             TextField(
               controller: _marcaController,
-              decoration: InputDecoration(labelText: 'Marca del Vehículo'),
+              decoration: InputDecoration(
+                labelText: 'Marca del Vehículo',
+                labelStyle: TextStyle(
+                    color: const Color.fromARGB(255, 255, 255,
+                        255)), // Cambia el color del texto del label
+                hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
+              ),
+              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
 
             //Campo Modelo
             SizedBox(height: 10.0),
             TextField(
               controller: _modeloController,
-              decoration: InputDecoration(labelText: 'Modelo del Vehículo'),
+              decoration: InputDecoration(
+                labelText: 'Modelo del Vehículo',
+                labelStyle: TextStyle(
+                    color: const Color.fromARGB(255, 255, 255,
+                        255)), // Cambia el color del texto del label
+                hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
+              ),
+              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
-
             //Campo Año
             SizedBox(height: 10.0),
             InkWell(
@@ -119,18 +132,31 @@ class _VehiculosPageState extends State<VehiculosPage> {
                   controller: _yearController,
                   decoration: InputDecoration(
                     labelText: 'Fecha de Nacimiento',
-                    suffixIcon: Icon(Icons.calendar_today),
+                    labelStyle: TextStyle(
+                        color: const Color.fromARGB(255, 255, 255, 255)),
+                    suffixIcon: Icon(
+                      Icons.calendar_today,
+                    ),
+                    hintStyle:
+                        TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
                   ),
+                  style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
                 ),
               ),
             ),
-
 
             //Campo Placa
             SizedBox(height: 10.0),
             TextField(
               controller: _patenteController,
-              decoration: InputDecoration(labelText: 'Número de Placa'),
+              decoration: InputDecoration(
+                labelText: 'Número de Placa',
+                labelStyle: TextStyle(
+                    color: const Color.fromARGB(255, 255, 255,
+                        255)), // Cambia el color del texto del label
+                hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
+              ),
+              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
 
             //Botón Registrar
@@ -139,10 +165,14 @@ class _VehiculosPageState extends State<VehiculosPage> {
               onPressed: () {
                 registerVehicle();
               },
-              child: Text('Registrar Vehículo'),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Color.fromARGB(
+                    255, 33, 146, 7)), // Cambia el color del botón
+              ),
+              child: Text('Registrar Vehículo',
+                  style: TextStyle(color: Colors.white)),
             ),
 
-           
             //Botón Volver
             SizedBox(height: 20.0),
             TextButton(
@@ -154,7 +184,11 @@ class _VehiculosPageState extends State<VehiculosPage> {
                   ),
                 );
               },
-              child: Text('Volver'),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Color.fromARGB(
+                    255, 168, 5, 5)), // Cambia el color del botón
+              ),
+              child: Text('Volver', style: TextStyle(color: Colors.white)),
             ),
           ],
         ),

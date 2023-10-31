@@ -104,7 +104,8 @@ class _PopupMenuExampleState extends State<PopupMenuExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mis Vehiculos'),
+        title:
+            const Text('Mis Vehiculos', style: TextStyle(color: Colors.white)),
         backgroundColor: Color.fromARGB(255, 13, 125, 176),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
