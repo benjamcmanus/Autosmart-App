@@ -14,7 +14,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: any
   date_field: ^3.0.5
-  fluttertoast: ^8.2.2
+  fluttertoast: ^8.2.4
   mailer: ^6.0.1
   sqflite: ^2.3.0
 
