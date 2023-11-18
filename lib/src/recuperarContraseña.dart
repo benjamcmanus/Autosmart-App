@@ -60,6 +60,7 @@ class _RecoverUserState extends State<RecoverUserPage> {
       );
     } else if (response.statusCode == 200) {
       // Contraseña aleatoria generada, muestra un mensaje al usuario
+      // ignore: unused_local_variable
       String password =
           "ContraseñaGenerada"; // Reemplaza esto con la contraseña generada
       Fluttertoast.showToast(
