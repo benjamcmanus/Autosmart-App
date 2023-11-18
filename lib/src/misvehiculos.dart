@@ -5,7 +5,7 @@ import 'package:Autosmart/src/registrarvehiculo.dart';
 enum SampleItem { itemOne, itemTwo, itemThree }
 
 void main() {
-  runApp(MisVehiculosApp());
+  runApp(const MisVehiculosApp());
 }
 
 class MisVehiculosApp extends StatelessWidget {
@@ -64,12 +64,12 @@ class _PopupMenuExampleState extends State<PopupMenuExample> {
       items: <PopupMenuEntry<SampleItem>>[
         PopupMenuItem<SampleItem>(
           value: SampleItem.itemOne,
-          child: Text('Registrar Vehiculo'),
+          child: const Text('Registrar Vehiculo'),
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => VehiculosApp(),
+                builder: (context) => const VehiculosApp(),
               ),
             );
           },
@@ -80,12 +80,12 @@ class _PopupMenuExampleState extends State<PopupMenuExample> {
         ),
         PopupMenuItem<SampleItem>(
           value: SampleItem.itemThree,
-          child: Text('Volver'),
+          child: const Text('Volver'),
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => BlankApp(),
+                builder: (context) => const BlankApp(),
               ),
             );
           },
@@ -106,27 +106,27 @@ class _PopupMenuExampleState extends State<PopupMenuExample> {
       appBar: AppBar(
         title:
             const Text('Mis Vehiculos', style: TextStyle(color: Colors.white)),
-        backgroundColor: Color.fromARGB(255, 13, 125, 176),
+        backgroundColor: const Color.fromARGB(255, 13, 125, 176),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => BlankApp(),
+                builder: (context) => const BlankApp(),
               ),
             ); // Navegar de regreso a la página anterior
           },
         ),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Contenido principal'),
       ),
       floatingActionButton: FloatingActionButton(
         key: _key,
         onPressed: _openMenu,
-        backgroundColor: Color.fromARGB(255, 51, 189, 120),
-        child: Icon(Icons.add),
+        backgroundColor: const Color.fromARGB(255, 51, 189, 120),
+        child: const Icon(Icons.add),
       ),
     );
   }

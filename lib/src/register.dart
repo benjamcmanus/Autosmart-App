@@ -4,31 +4,35 @@ import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
-  runApp(RegisterApp());
+  runApp(const RegisterApp());
 }
 
 class RegisterApp extends StatelessWidget {
+  const RegisterApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: RegisterPage(),
     );
   }
 }
 
 class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
+
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  TextEditingController _firstNameController = TextEditingController();
-  TextEditingController _lastNameController = TextEditingController();
-  TextEditingController _middleNameController = TextEditingController();
-  TextEditingController _dobController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _middleNameController = TextEditingController();
+  final TextEditingController _dobController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
 
   DateTime? selectedDate;
 
@@ -41,7 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
         )) ??
         DateTime.now();
 
-    if (picked != null && picked != selectedDate) {
+    if (picked != selectedDate) {
       setState(() {
         selectedDate = picked;
         _dobController.text = "${picked.year}/${picked.month}/${picked.day}";
@@ -95,7 +99,7 @@ class _RegisterPageState extends State<RegisterPage> {
       );
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Autosmart_LoginForm()),
+        MaterialPageRoute(builder: (context) => const Autosmart_LoginForm()),
       );
     }
   }
@@ -104,148 +108,148 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Registro'),
-        backgroundColor: Color.fromARGB(255, 3, 18, 52),
+        title: const Text('Registro'),
+        backgroundColor: const Color.fromARGB(255, 3, 18, 52),
       ),
-      backgroundColor: Color.fromARGB(255, 7, 32, 53),
+      backgroundColor: const Color.fromARGB(255, 7, 32, 53),
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: <Widget>[
             //Campo Nombre
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextField(
               controller: _firstNameController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Nombre',
                 labelStyle: TextStyle(
-                    color: const Color.fromARGB(255, 255, 255,
+                    color: Color.fromARGB(255, 255, 255,
                         255)), // Cambia el color del texto del label
                 hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
               ),
-              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
+              style: const TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
             //Campo Apellido Paterno
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextField(
               controller: _lastNameController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Apellido Paterno',
                 labelStyle: TextStyle(
-                    color: const Color.fromARGB(255, 255, 255,
+                    color: Color.fromARGB(255, 255, 255,
                         255)), // Cambia el color del texto del label
                 hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
               ),
-              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
+              style: const TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
             //Campo Apellido Materno
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextField(
               controller: _middleNameController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Apellido Materno',
                 labelStyle: TextStyle(
-                    color: const Color.fromARGB(255, 255, 255,
+                    color: Color.fromARGB(255, 255, 255,
                         255)), // Cambia el color del texto del label
                 hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
               ),
-              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
+              style: const TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
 
             //Campo Fecha de Nacimiento
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             InkWell(
               onTap: () => _selectDate(context),
               child: IgnorePointer(
                 child: TextField(
                   controller: _dobController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Fecha de Nacimiento',
                     labelStyle: TextStyle(
-                        color: const Color.fromARGB(255, 255, 255, 255)),
+                        color: Color.fromARGB(255, 255, 255, 255)),
                     suffixIcon: Icon(
                       Icons.calendar_today,
                     ),
                     hintStyle:
                         TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
                   ),
-                  style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
+                  style: const TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
                 ),
               ),
             ),
 
             //Campo Correo Electronico
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'E-Mail',
                 labelStyle: TextStyle(
-                    color: const Color.fromARGB(255, 255, 255,
+                    color: Color.fromARGB(255, 255, 255,
                         255)), // Cambia el color del texto del label
                 hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
               ),
-              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
+              style: const TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
 
             //Campo Contraseña
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextField(
               controller: _passwordController,
               obscureText: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Contraseña',
                 labelStyle: TextStyle(
-                    color: const Color.fromARGB(255, 255, 255,
+                    color: Color.fromARGB(255, 255, 255,
                         255)), // Cambia el color del texto del label
                 hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
               ),
-              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
+              style: const TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
 
             //Campo Confirmar Contraseña
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextField(
               controller: _confirmPasswordController,
               obscureText: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Confirmar Contraseña',
                 labelStyle: TextStyle(
-                    color: const Color.fromARGB(255, 255, 255,
+                    color: Color.fromARGB(255, 255, 255,
                         255)), // Cambia el color del texto del label
                 hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
               ),
-              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
+              style: const TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
 
             //Boton Registrarse
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
                 registerUser();
               },
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Color.fromARGB(
+                backgroundColor: MaterialStateProperty.all(const Color.fromARGB(
                     255, 33, 146, 7)), // Cambia el color del botón
               ),
-              child: Text('Registrar'),
+              child: const Text('Registrar'),
             ),
 
             //Boton Volver
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => Autosmart_LoginForm()),
+                      builder: (context) => const Autosmart_LoginForm()),
                 );
               },
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Color.fromARGB(
+                backgroundColor: MaterialStateProperty.all(const Color.fromARGB(
                     255, 134, 2, 24)), // Cambia el color del botón
               ),
-              child: Text('Volver'),
+              child: const Text('Volver'),
             ),
           ],
         ),

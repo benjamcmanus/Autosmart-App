@@ -4,34 +4,38 @@ import 'package:Autosmart/src/login.dart';
 import 'package:Autosmart/src/misvehiculos.dart';
 
 void main() {
-  runApp(BlankApp());
+  runApp(const BlankApp());
 }
 
 class BlankApp extends StatelessWidget {
+  const BlankApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: HomeScreen(),
     );
   }
 }
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('AutoSmart'),
-        backgroundColor: Color.fromARGB(255, 3, 18, 52),
+        title: const Text('AutoSmart'),
+        backgroundColor: const Color.fromARGB(255, 3, 18, 52),
       ),
-      backgroundColor: Color.fromARGB(255, 7, 32, 53),
+      backgroundColor: const Color.fromARGB(255, 7, 32, 53),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
+            const DrawerHeader(
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 14, 50, 79),
+                color: Color.fromARGB(255, 14, 50, 79),
               ),
               child: Text(
                 'Menú Lateral',
@@ -42,37 +46,37 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('Perfil'),
+              title: const Text('Perfil'),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => PerfilApp()),
+                  MaterialPageRoute(builder: (context) => const PerfilApp()),
                 );
               },
             ),
             ListTile(
-              title: Text('Mis Vehiculos'),
+              title: const Text('Mis Vehiculos'),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MisVehiculosApp()),
+                  MaterialPageRoute(builder: (context) => const MisVehiculosApp()),
                 );
               },
             ),
             ListTile(
-              title: Text('Ajustes'),
+              title: const Text('Ajustes'),
               onTap: () {
                 // Acción a realizar cuando se selecciona la opción 2
               },
             ),
             // Este es el botón de "Volver"
             ListTile(
-              title: Text('Cerrar Sesion'),
+              title: const Text('Cerrar Sesion'),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => Autosmart_LoginForm()),
+                      builder: (context) => const Autosmart_LoginForm()),
                 );
               },
             ),
@@ -103,7 +107,7 @@ class HomeScreen extends StatelessWidget {
                     color: Colors.teal[200],
                     child: Column(
                       children: [
-                        Text('Heed not the rabble'),
+                        const Text('Heed not the rabble'),
                         Image.asset(
                             'assets/images/logo.jpg'), // Reemplaza 'tu_imagen.png' con la ubicación de tu imagen en el proyecto
                       ],

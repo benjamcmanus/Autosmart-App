@@ -4,25 +4,29 @@ import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
-  runApp(RecoverUserApp());
+  runApp(const RecoverUserApp());
 }
 
 class RecoverUserApp extends StatelessWidget {
+  const RecoverUserApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: RecoverUserPage(),
     );
   }
 }
 
 class RecoverUserPage extends StatefulWidget {
+  const RecoverUserPage({super.key});
+
   @override
   _RecoverUserState createState() => _RecoverUserState();
 }
 
 class _RecoverUserState extends State<RecoverUserPage> {
-  TextEditingController _emailController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
 
   Future<void> recoverUser() async {
     final email = _emailController.text;
@@ -78,7 +82,7 @@ class _RecoverUserState extends State<RecoverUserPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Contraseña Generada"),
+          title: const Text("Contraseña Generada"),
           content: Text("La contraseña generada es: $password"),
           actions: <Widget>[
             TextButton(
@@ -87,10 +91,10 @@ class _RecoverUserState extends State<RecoverUserPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => Autosmart_LoginForm()),
+                      builder: (context) => const Autosmart_LoginForm()),
                 );
               },
-              child: Text("Cerrar"),
+              child: const Text("Cerrar"),
             ),
           ],
         );
@@ -102,39 +106,39 @@ class _RecoverUserState extends State<RecoverUserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Recuperar Contraseña'),
+        title: const Text('Recuperar Contraseña'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: <Widget>[
             //Campo Correo Electronico
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'E-mail'),
+              decoration: const InputDecoration(labelText: 'E-mail'),
             ),
 
             //Boton Enviar codigo de recuperacion
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
                 recoverUser();
               },
-              child: Text('Generar contraseña temporal'),
+              child: const Text('Generar contraseña temporal'),
             ),
 
             //Boton Volver
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => Autosmart_LoginForm()),
+                      builder: (context) => const Autosmart_LoginForm()),
                 );
               },
-              child: Text('Volver'),
+              child: const Text('Volver'),
             ),
           ],
         ),

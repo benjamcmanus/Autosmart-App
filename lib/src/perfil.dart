@@ -3,33 +3,36 @@ import 'package:flutter/material.dart';
 import 'package:Autosmart/src/login.dart';
 import 'package:Autosmart/src/misvehiculos.dart';
 
-import 'package:sqflite/sqflite.dart';
 
 void main() {
-  runApp(PerfilApp());
+  runApp(const PerfilApp());
 }
 
 class PerfilApp extends StatelessWidget {
+  const PerfilApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: ProfileScreen(),
     );
   }
 }
 
 class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('AutoSmart'),
+        title: const Text('AutoSmart'),
       ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
+            const DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
@@ -42,44 +45,44 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('Inicio'),
+              title: const Text('Inicio'),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BlankApp()),
+                  MaterialPageRoute(builder: (context) => const BlankApp()),
                 );
               },
             ),
             ListTile(
-              title: Text('Mis Vehiculos'),
+              title: const Text('Mis Vehiculos'),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MisVehiculosApp()),
+                  MaterialPageRoute(builder: (context) => const MisVehiculosApp()),
                 );
               },
             ),
             ListTile(
-              title: Text('Ajustes'),
+              title: const Text('Ajustes'),
               onTap: () {
                 // Acción a realizar cuando se selecciona la opción 2
               },
             ),
             // Este es el botón de "Volver"
             ListTile(
-              title: Text('Cerrar Sesion'),
+              title: const Text('Cerrar Sesion'),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => Autosmart_LoginForm()),
+                      builder: (context) => const Autosmart_LoginForm()),
                 );
               },
             ),
           ],
         ),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Contenido principal de la aplicación'),
       ),
     );

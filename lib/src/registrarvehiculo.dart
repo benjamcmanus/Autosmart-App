@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:Autosmart/src/blank.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:Autosmart/src/misvehiculos.dart';
 
 void main() {
-  runApp(VehiculosApp());
+  runApp(const VehiculosApp());
 }
 
 class VehiculosApp extends StatelessWidget {
+  const VehiculosApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: VehiculosPage(),
     );
   }
 }
 
 class VehiculosPage extends StatefulWidget {
+  const VehiculosPage({super.key});
+
   @override
   _VehiculosPageState createState() => _VehiculosPageState();
 }
 
 class _VehiculosPageState extends State<VehiculosPage> {
-  TextEditingController _marcaController = TextEditingController();
-  TextEditingController _modeloController = TextEditingController();
-  TextEditingController _yearController = TextEditingController();
-  TextEditingController _patenteController = TextEditingController();
+  final TextEditingController _marcaController = TextEditingController();
+  final TextEditingController _modeloController = TextEditingController();
+  final TextEditingController _yearController = TextEditingController();
+  final TextEditingController _patenteController = TextEditingController();
 
   DateTime? selectedDate;
 
@@ -39,7 +42,7 @@ class _VehiculosPageState extends State<VehiculosPage> {
         )) ??
         DateTime.now();
 
-    if (picked != null && picked != selectedDate) {
+    if (picked != selectedDate) {
       setState(() {
         selectedDate = picked;
         _yearController.text = "${picked.year}";
@@ -88,107 +91,107 @@ class _VehiculosPageState extends State<VehiculosPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Registro de Vehículo'),
-        backgroundColor: Color.fromARGB(255, 3, 18, 52),
+        title: const Text('Registro de Vehículo'),
+        backgroundColor: const Color.fromARGB(255, 3, 18, 52),
       ),
-      backgroundColor: Color.fromARGB(255, 7, 32, 53),
+      backgroundColor: const Color.fromARGB(255, 7, 32, 53),
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: <Widget>[
             //Campo Marca
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextField(
               controller: _marcaController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Marca del Vehículo',
                 labelStyle: TextStyle(
-                    color: const Color.fromARGB(255, 255, 255,
+                    color: Color.fromARGB(255, 255, 255,
                         255)), // Cambia el color del texto del label
                 hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
               ),
-              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
+              style: const TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
 
             //Campo Modelo
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextField(
               controller: _modeloController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Modelo del Vehículo',
                 labelStyle: TextStyle(
-                    color: const Color.fromARGB(255, 255, 255,
+                    color: Color.fromARGB(255, 255, 255,
                         255)), // Cambia el color del texto del label
                 hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
               ),
-              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
+              style: const TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
             //Campo Año
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             InkWell(
               onTap: () => _selectDate(context),
               child: IgnorePointer(
                 child: TextField(
                   controller: _yearController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Fecha de Nacimiento',
                     labelStyle: TextStyle(
-                        color: const Color.fromARGB(255, 255, 255, 255)),
+                        color: Color.fromARGB(255, 255, 255, 255)),
                     suffixIcon: Icon(
                       Icons.calendar_today,
                     ),
                     hintStyle:
                         TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
                   ),
-                  style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
+                  style: const TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
                 ),
               ),
             ),
 
             //Campo Placa
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextField(
               controller: _patenteController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Número de Placa',
                 labelStyle: TextStyle(
-                    color: const Color.fromARGB(255, 255, 255,
+                    color: Color.fromARGB(255, 255, 255,
                         255)), // Cambia el color del texto del label
                 hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
               ),
-              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
+              style: const TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
 
             //Botón Registrar
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
                 registerVehicle();
               },
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Color.fromARGB(
+                backgroundColor: MaterialStateProperty.all(const Color.fromARGB(
                     255, 33, 146, 7)), // Cambia el color del botón
               ),
-              child: Text('Registrar Vehículo',
+              child: const Text('Registrar Vehículo',
                   style: TextStyle(color: Colors.white)),
             ),
 
             //Botón Volver
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             TextButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MisVehiculosApp(),
+                    builder: (context) => const MisVehiculosApp(),
                   ),
                 );
               },
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Color.fromARGB(
+                backgroundColor: MaterialStateProperty.all(const Color.fromARGB(
                     255, 168, 5, 5)), // Cambia el color del botón
               ),
-              child: Text('Volver', style: TextStyle(color: Colors.white)),
+              child: const Text('Volver', style: TextStyle(color: Colors.white)),
             ),
           ],
         ),

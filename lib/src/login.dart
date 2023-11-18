@@ -7,26 +7,30 @@ import 'package:Autosmart/src/blank.dart';
 import 'package:Autosmart/src/recuperarContraseña.dart';
 
 void main() {
-  runApp(Autosmart_LoginForm());
+  runApp(const Autosmart_LoginForm());
 }
 
 class Autosmart_LoginForm extends StatelessWidget {
+  const Autosmart_LoginForm({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: LoginPage(),
     );
   }
 }
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   // Method to save the user's email to SharedPreferences
   Future<void> saveUserEmail(String email) async {
@@ -83,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
         // Redirecciona a la página en blanco
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => BlankApp()),
+          MaterialPageRoute(builder: (context) => const BlankApp()),
         );
       }
     } else if (response.statusCode == 404) {
@@ -125,93 +129,95 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('AutoSmart'),
-        backgroundColor: Color.fromARGB(255, 3, 18, 52),
+        title: const Text('AutoSmart'),
+        backgroundColor: const Color.fromARGB(255, 3, 18, 52),
       ),
-      backgroundColor: Color.fromARGB(255, 7, 32, 53),
+      backgroundColor: const Color.fromARGB(255, 7, 32, 53),
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: <Widget>[
             Image.asset('assets/images/logo.jpg', height: 165, width: 165),
 
             // Campo Correo Electrónico
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'E-mail',
                 labelStyle:
-                    TextStyle(color: const Color.fromARGB(255, 255, 255, 255)),
+                    TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                 hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
               ),
-              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
+              style: const TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
             // Campo Contraseña
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             TextField(
               controller: _passwordController,
               obscureText: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Contraseña',
                 labelStyle:
-                    TextStyle(color: const Color.fromARGB(255, 255, 255, 255)),
+                    TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                 hintStyle: TextStyle(color: Color.fromARGB(255, 243, 243, 243)),
               ),
-              style: TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
+              style: const TextStyle(color: Color.fromARGB(255, 210, 228, 15)),
             ),
             // Botón Iniciar Sesión
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
                 final email = _emailController.text;
+                // ignore: unused_local_variable
                 final password = _passwordController.text;
                 if (email.isNotEmpty) {
-                  // Save the user's email to SharedPreferences before logging in
                   saveUserEmail(email);
                 }
                 loginUser();
               },
               style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(Color.fromARGB(255, 33, 146, 7)),
+                backgroundColor: MaterialStateProperty.all(
+                    const Color.fromARGB(255, 33, 146, 7)),
               ),
-              child: Text('Iniciar Sesión'),
+              child: const Text('Iniciar Sesión'),
             ),
             // Botón Registrarse
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => RegisterApp()),
+                  MaterialPageRoute(builder: (context) => const RegisterApp()),
                 );
               },
-              child: Text('Registrarse', style: TextStyle(color: Colors.white)),
+              child: const Text('Registrarse',
+                  style: TextStyle(color: Colors.white)),
             ),
 
             // Botón Login como invitado
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             TextButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BlankApp()),
+                  MaterialPageRoute(builder: (context) => const BlankApp()),
                 );
               },
-              child: Text('Iniciar Sesión Como Invitado'),
+              child: const Text('Iniciar Sesión Como Invitado'),
             ),
 
             // Botón Recuperar Contraseña
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             TextButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => RecoverUserApp()),
+                  MaterialPageRoute(
+                      builder: (context) => const RecoverUserApp()),
                 );
               },
-              child: Text('Recuperar Contraseña'),
+              child: const Text('Recuperar Contraseña'),
             ),
           ],
         ),
