@@ -180,7 +180,8 @@ class _LoginPageState extends State<LoginPage> {
                 backgroundColor: MaterialStateProperty.all(
                     const Color.fromARGB(255, 33, 146, 7)),
               ),
-              child: const Text('Iniciar Sesión'),
+              child: const Text('Iniciar Sesión',
+                  style: TextStyle(color: Colors.white)),
             ),
             // Botón Registrarse
             const SizedBox(height: 20.0),
@@ -192,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
                 );
               },
               child: const Text('Registrarse',
-                  style: TextStyle(color: Colors.white)),
+                  style: TextStyle(color: Colors.black)),
             ),
 
             // Botón Login como invitado
@@ -204,7 +205,8 @@ class _LoginPageState extends State<LoginPage> {
                   MaterialPageRoute(builder: (context) => const BlankApp()),
                 );
               },
-              child: const Text('Iniciar Sesión Como Invitado'),
+              child: const Text('Iniciar Sesión Como Invitado',
+                  style: TextStyle(color: Colors.white)),
             ),
 
             // Botón Recuperar Contraseña
@@ -217,7 +219,8 @@ class _LoginPageState extends State<LoginPage> {
                       builder: (context) => const RecoverUserApp()),
                 );
               },
-              child: const Text('Recuperar Contraseña'),
+              child: const Text('Recuperar Contraseña',
+                  style: TextStyle(color: Colors.white)),
             ),
           ],
         ),
