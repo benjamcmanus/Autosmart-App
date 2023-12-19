@@ -25,7 +25,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AutoSmart'),
+        title: const Text('AutoSmart',
+        style: TextStyle(color: Colors.white)),
         backgroundColor: const Color.fromARGB(255, 3, 18, 52),
       ),
       backgroundColor: const Color.fromARGB(255, 7, 32, 53),

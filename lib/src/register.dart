@@ -232,7 +232,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 backgroundColor: MaterialStateProperty.all(const Color.fromARGB(
                     255, 33, 146, 7)), // Cambia el color del botón
               ),
-              child: const Text('Registrar'),
+              child: const Text('Registrar', style: TextStyle(color: Colors.white)),
             ),
 
             //Boton Volver
@@ -249,7 +249,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 backgroundColor: MaterialStateProperty.all(const Color.fromARGB(
                     255, 134, 2, 24)), // Cambia el color del botón
               ),
-              child: const Text('Volver'),
+              child: const Text('Volver',style: TextStyle(color: Colors.white)),
             ),
           ],
         ),

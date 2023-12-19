@@ -91,7 +91,7 @@ class _VehiculosPageState extends State<VehiculosPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registro de Vehículo'),
+        title: const Text('Registro de Vehículo',style: TextStyle(color: Colors.white)),
         backgroundColor: const Color.fromARGB(255, 3, 18, 52),
       ),
       backgroundColor: const Color.fromARGB(255, 7, 32, 53),
